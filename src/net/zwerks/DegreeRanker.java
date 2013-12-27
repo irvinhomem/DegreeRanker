@@ -22,7 +22,7 @@ public class DegreeRanker {
 		this.countedNodes = new HashMap<String, String>();
 		this.top1000Nodes = new ArrayList<String>();
 		
-		
+		//..
 	}
 
 	public static void main(String[] args) {
