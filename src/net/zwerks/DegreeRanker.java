@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 //import com.zwerks.subgrapher.RankedNodeList;
 
@@ -22,7 +23,6 @@ public class DegreeRanker {
 		this.countedNodes = new HashMap<String, String>();
 		this.top1000Nodes = new ArrayList<String>();
 		
-		//..
 	}
 
 	public static void main(String[] args) {
@@ -58,8 +58,10 @@ public class DegreeRanker {
 		
 		Integer lastRankIndex = 0;
 		
-		
-			System.out.println("Starting at the top of the file ...");
+//		try {
+//			System.out.println("Starting at the top of the file ...");
+//			PrintWriter writeToFile = new PrintWriter(System.getProperty("user.dir") + "\\" + "NodeCount.txt");
+			
 			while (s.hasNext()){
 				newNode = s.next();
 			    if(this.countedNodes.containsKey(newNode)){
@@ -110,9 +112,14 @@ public class DegreeRanker {
 			    	 }
 			    }
 			}
+			
+			System.out.println("Reached the end of the file ...");
+			System.out.println("HashMap Size: " + countedNodes.size());
 		
-		System.out.println("Reached the end of the file ...");
-		System.out.println("HashMap Size: " + countedNodes.size());
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	public String getBigGraphFilePath(){
@@ -133,7 +140,9 @@ public class DegreeRanker {
 			PrintWriter writeToFile = new PrintWriter(System.getProperty("user.dir") + "\\" + "NodeCount.txt");
 		
 			System.out.println("Starting write to file ...");
-			Iterator it = hmp.entrySet().iterator();
+			System.out.println("Entry-set size: "+ hmp.entrySet().size());
+			
+			Iterator it = hmp.entrySet().iterator();  
 			while (it.hasNext()) {
 			    Map.Entry entry = (Map.Entry) it.next();
 			    
@@ -147,6 +156,9 @@ public class DegreeRanker {
 			
 			System.out.println("Finished write to file ...");
 			System.out.println("HashMap size 2: " + hmp.size());
+			
+			writeToFile.close();
+			System.out.println("Closed file ...");
 		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
